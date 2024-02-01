@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.SqlTypes;
+
 
 namespace ConsoleAppTI.Entities;
 
@@ -13,13 +13,17 @@ public class OrderRowEntity
 
     [Required]
     [ForeignKey(nameof(OrderEntity))]
+
     public int OrderId { get; set; }
-    public virtual OrderEntity OrderEntity { get; set; } = null!;
+
+    public virtual OrderEntity Order { get; set; } = null!;
 
 
     [Required]
     [ForeignKey(nameof(ProductEntity))]
+
     public int ProductId { get; set; }
+
     public virtual ProductEntity Product { get; set; } = null!;
 
 
@@ -30,17 +34,14 @@ public class OrderRowEntity
 
 
     [Required]
-    [Column(TypeName = "money")]
+    [Column(TypeName = "varchar(max)")]
     public string PriceUnit { get; set; } = null!;
 
 
 
     [Required]
-    [Column(TypeName = "money")]
+    [Column(TypeName = "varchar(max)")]
     public string Price { get; set; } = null!;
 
-    public virtual ICollection<OrderEntity> Orders { get; set; } = new HashSet<OrderEntity>();
-
-    public virtual ICollection<ProductEntity> Products { get; set; } = new HashSet<ProductEntity>();
 
 }

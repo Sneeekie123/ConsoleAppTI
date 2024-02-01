@@ -11,4 +11,6 @@ public class ProductEntity
     [Required]
     [Column(TypeName = "nvarchar(200)")]
     public string ProductName { get; set; } = null!;
+
+
 }
