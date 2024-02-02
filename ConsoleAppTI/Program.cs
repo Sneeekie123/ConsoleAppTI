@@ -8,7 +8,7 @@ var builder = Host.CreateDefaultBuilder();
 builder.ConfigureServices(services =>
 {
 
-    services.AddDbContext<DataContext>(x => x.UseSqlServer(@"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Projects\\ConsoleAppTI\\ConsoleAppTI\\Data\\local_database.mdf;Integrated Security=True;Connect Timeout=30"));
+    services.AddDbContext<DataContext>(x => x.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Projects\ConsoleAppTI\ConsoleAppTI\Data\local_database.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=True"));
 
 });
 

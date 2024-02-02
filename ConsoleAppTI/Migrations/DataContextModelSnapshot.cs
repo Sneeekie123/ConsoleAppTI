@@ -110,6 +110,9 @@ namespace ConsoleAppTI.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 
+                    b.Property<DateTime>("PriceDate")
+                        .HasColumnType("DateTime2");
+
                     b.HasKey("PriceId");
 
                     b.ToTable("Prices");
@@ -123,7 +126,7 @@ namespace ConsoleAppTI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<int?>("PriceEntityPriceId")
+                    b.Property<int>("PriceId")
                         .HasColumnType("int");
 
                     b.Property<string>("ProductName")
@@ -132,7 +135,7 @@ namespace ConsoleAppTI.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("PriceEntityPriceId");
+                    b.HasIndex("PriceId");
 
                     b.ToTable("Products");
                 });
@@ -169,9 +172,13 @@ namespace ConsoleAppTI.Migrations
 
             modelBuilder.Entity("ConsoleAppTI.Entities.ProductEntity", b =>
                 {
-                    b.HasOne("ConsoleAppTI.Entities.PriceEntity", null)
+                    b.HasOne("ConsoleAppTI.Entities.PriceEntity", "Price")
                         .WithMany("Products")
-                        .HasForeignKey("PriceEntityPriceId");
+                        .HasForeignKey("PriceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Price");
                 });
 
             modelBuilder.Entity("ConsoleAppTI.Entities.OrderEntity", b =>

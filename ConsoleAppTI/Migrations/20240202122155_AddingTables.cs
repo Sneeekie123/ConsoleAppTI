@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace ConsoleAppTI.Migrations
 {
     /// <inheritdoc />
-    public partial class AddingNewTables : Migration
+    public partial class AddingTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,7 +29,8 @@ namespace ConsoleAppTI.Migrations
                 {
                     PriceId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Price = table.Column<string>(type: "varchar(max)", nullable: false)
+                    Price = table.Column<string>(type: "varchar(max)", nullable: false),
+                    PriceDate = table.Column<DateTime>(type: "DateTime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,16 +65,17 @@ namespace ConsoleAppTI.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "nvarchar(200)", nullable: false),
-                    PriceEntityPriceId = table.Column<int>(type: "int", nullable: true)
+                    PriceId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_Products_Prices_PriceEntityPriceId",
-                        column: x => x.PriceEntityPriceId,
+                        name: "FK_Products_Prices_PriceId",
+                        column: x => x.PriceId,
                         principalTable: "Prices",
-                        principalColumn: "PriceId");
+                        principalColumn: "PriceId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -126,9 +129,9 @@ namespace ConsoleAppTI.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_PriceEntityPriceId",
+                name: "IX_Products_PriceId",
                 table: "Products",
-                column: "PriceEntityPriceId");
+                column: "PriceId");
         }
 
         /// <inheritdoc />

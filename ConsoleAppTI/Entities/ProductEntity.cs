@@ -12,5 +12,10 @@ public class ProductEntity
     [Column(TypeName = "nvarchar(200)")]
     public string ProductName { get; set; } = null!;
 
+    [Required]
+    [ForeignKey(nameof(PriceEntity))]
 
+    public int PriceId { get; set; }
+
+    public virtual PriceEntity Price { get; set; } = null!;
 }

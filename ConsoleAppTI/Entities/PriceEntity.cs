@@ -14,6 +14,9 @@ public class PriceEntity
     [Column(TypeName = "varchar(max)")]
     public string Price { get; set; } = null!;
 
+    [Required]
+    [Column(TypeName = "DateTime2")]
+    public DateTime PriceDate { get; set; } 
 
     public virtual ICollection<ProductEntity> Products { get; set; } = new HashSet<ProductEntity>();
 
