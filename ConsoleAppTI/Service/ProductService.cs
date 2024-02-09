@@ -19,8 +19,8 @@ public class ProductService(CustomerRepository customerRepository, OrderReposito
         {
             if (!_productRepository.Exists(x => x.ProductId == product.ProductId))
             {
-                var priceEntity = _priceRepository.GetOne(x => x.PriceId == product.PriceId);
-                priceEntity ??= _priceRepository.Create(new PriceEntity { PriceId = product.PriceId });
+                var priceEntity = _priceRepository.GetOne(x => x.Price == product.Price);
+                priceEntity ??= _priceRepository.Create(new PriceEntity { Price = product.Price });
 
                 var productEntity = new ProductEntity
                 {

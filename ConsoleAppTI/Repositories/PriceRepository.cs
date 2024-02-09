@@ -3,7 +3,7 @@ using ConsoleAppTI.Entities;
 
 namespace ConsoleAppTI.Repositories;
 
-public class PriceRepository(DataContext dataContext) : BaseRepository<PriceEntity>(dataContext)
+public class PriceRepository(DataContext context) : BaseRepository<PriceEntity>(context)
 {
-    private readonly DataContext _dataContext = dataContext;
+    private readonly DataContext _context = context;
 }

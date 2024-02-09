@@ -10,5 +10,5 @@ public class Product
 
     public string Price { get; set; } = null!;
 
-    public DateTime PriceDate { get; set; }
+
 }

@@ -5,5 +5,5 @@ namespace ConsoleAppTI.Repositories;
 
 public class CustomerRepository(DataContext context) : BaseRepository<CustomerEntity>(context)
 {
-    private readonly DataContext _dataContext = context;
+    private readonly DataContext _context = context;
 }

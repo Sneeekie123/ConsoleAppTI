@@ -28,9 +28,11 @@ Console.Clear();
 var productService = builder.Services.GetRequiredService<ProductService>();
 var result = productService.CreateProduct(new Product
 {
-    ProductId = 1,
-    ProductName = "Test",
-    Price = "1",
+    ProductId = 3,
+    ProductName = "Test3213",
+    Price = "300",
+    PriceId = 3,
+    
 });
 
 

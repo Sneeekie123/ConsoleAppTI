@@ -5,5 +5,5 @@ namespace ConsoleAppTI.Repositories;
 
 public class OrderRepository(DataContext context) : BaseRepository<OrderEntity>(context)
 {
-    private readonly DataContext _dataContext = context;
+    private readonly DataContext _context = context;
 }
